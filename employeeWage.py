@@ -11,6 +11,7 @@ class EmployeePayroll():
     totalEmpWage = 0
     empWage = 0
     totalEmpHrs = 0
+    company_details_list_array = []
 
     def __init__(self, company_name, wage_per_hour, days_per_month, max_total_working_hrs):
 
@@ -40,10 +41,13 @@ class EmployeePayroll():
 
         company_details_list = [self.company_name, self.wage_per_hour,
                               self.days_per_month, self.max_total_working_hrs, self.totalEmpWage]
+        self.company_details_list_array.append(company_details_list)
         print(company_details_list)
         print("Total employee wage of the month : ", company_details_list[len(company_details_list)-1])
 
 employeePayroll1 = EmployeePayroll("Amazon",50,23,187)
 employeePayroll1.wageCount()
+print(employeePayroll1.company_details_list_array)
 employeePayroll2 = EmployeePayroll("Google",60,20,198)
 employeePayroll2.wageCount()
+print(employeePayroll2.company_details_list_array)
