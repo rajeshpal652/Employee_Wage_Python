@@ -1,9 +1,6 @@
 import random
 
-class EmployeeWage():
-    wage_per_hour = 20
-    days_per_month = 20
-    max_total_working_hrs = 100
+class EmployeePayroll():
 
     is_absent = 0
     is_present = 1
@@ -15,7 +12,16 @@ class EmployeeWage():
     empWage = 0
     totalEmpHrs = 0
 
+    def __init__(self, company_name, wage_per_hour, days_per_month, max_total_working_hrs):
+
+        self.company_name = company_name
+        self.wage_per_hour = wage_per_hour
+        self.days_per_month = days_per_month
+        self.max_total_working_hrs = max_total_working_hrs
+
     def wageCount(self):
+
+        print("<============================================================================================>")
         while self.dayCount <= self.days_per_month and self.totalEmpHrs <= self.max_total_working_hrs:
             empCheck = random.randint(0, 2)
             if (empCheck == self.is_absent):
@@ -29,9 +35,15 @@ class EmployeeWage():
             self.empWage = self.wage_per_hour * self.empHrs
             self.totalEmpWage += self.empWage
             self.totalEmpHrs += self.empHrs
-            print("Total Employee Wage of the day : ", self.totalEmpWage, " Day No : ", self.dayCount - 1)
+            print("Employee Wage of the day : ", self.empWage,
+                  " Total Employee Wage upto the Day : ", self.totalEmpWage, " Day No : ", self.dayCount - 1)
 
-        print("Total employee wage of the month : ", self.totalEmpWage)
+        company_details_list = [self.company_name, self.wage_per_hour,
+                              self.days_per_month, self.max_total_working_hrs, self.totalEmpWage]
+        print(company_details_list)
+        print("Total employee wage of the month : ", company_details_list[len(company_details_list)-1])
 
-empWage = EmployeeWage()
-empWage.wageCount()
+employeePayroll1 = EmployeePayroll("Amazon",50,23,187)
+employeePayroll1.wageCount()
+employeePayroll2 = EmployeePayroll("Google",60,20,198)
+employeePayroll2.wageCount()
