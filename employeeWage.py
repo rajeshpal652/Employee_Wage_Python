@@ -11,7 +11,6 @@ class EmployeePayroll():
     totalEmpWage = 0
     empWage = 0
     totalEmpHrs = 0
-    company_details_list_array = []
 
     def __init__(self, company_name, wage_per_hour, days_per_month, max_total_working_hrs):
 
@@ -19,6 +18,7 @@ class EmployeePayroll():
         self.wage_per_hour = wage_per_hour
         self.days_per_month = days_per_month
         self.max_total_working_hrs = max_total_working_hrs
+        self.return_value = self.wageCount()
 
     def wageCount(self):
 
@@ -41,13 +41,35 @@ class EmployeePayroll():
 
         company_details_list = [self.company_name, self.wage_per_hour,
                               self.days_per_month, self.max_total_working_hrs, self.totalEmpWage]
-        self.company_details_list_array.append(company_details_list)
-        print(company_details_list)
+        # print(company_details_list)
         print("Total employee wage of the month : ", company_details_list[len(company_details_list)-1])
+        return company_details_list
 
-employeePayroll1 = EmployeePayroll("Amazon",50,23,187)
-employeePayroll1.wageCount()
-print(employeePayroll1.company_details_list_array)
-employeePayroll2 = EmployeePayroll("Google",60,20,198)
-employeePayroll2.wageCount()
-print(employeePayroll2.company_details_list_array)
+if __name__ == "__main__":
+    condition = True
+    company_details_list_array = []
+    while(condition == True):
+        print("")
+        print("<=====================================Employee Wage Builder=====================================>")
+        choice = int(input("1. Enter 1 to add Company Details \n2. Enter 2 to know Company Details \n3. Exit \n"))
+
+        if(choice == 1):
+            company_name = input("Enter Name of the Company : ")
+            wage_per_hour = int(input("Enter Wage Per Hour : "))
+            days_per_month = int(input("Enter Working Days Per Month : "))
+            max_total_working_hrs = int(input("Enter Maximum Working Hours Per Month : "))
+            employeePayroll = EmployeePayroll(company_name, wage_per_hour, days_per_month, max_total_working_hrs)
+            company_details_list_array.append(employeePayroll.return_value)
+
+        elif(choice == 2):
+            company = input("Enter Company name to find Employee Wage details : ")
+            for company_details in company_details_list_array:
+                if(company in company_details):
+                    print("Company Name : ", company_details[0],
+                          "\nWage Per Hour : ", company_details[1],
+                          "\nWorking Days Per Month : ", company_details[2],
+                          "\nMaximum Working Hours Per Month : ", company_details[3],
+                          "\nTotal Employee Wage per Month: ", company_details[4])
+
+        else:
+            condition = False
